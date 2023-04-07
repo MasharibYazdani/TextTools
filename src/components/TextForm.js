@@ -46,6 +46,22 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
 
+  function wordCount(content) {
+    if (content === "") {
+      return 0;
+    }
+    let arr = content.split(" ");
+    let len = arr.length;
+    let count = 0;
+
+    for (let i = 0; i < len; i++) {
+      if (arr[i] === "" || arr[i] === " ") {
+        count++;
+      }
+    }
+    return len - count;
+  }
+
   const [text, setText] = useState("");
 
   return (
@@ -94,7 +110,7 @@ export default function TextForm(props) {
       >
         <h2>Your Text Summary:</h2>
         <p>
-          {text.split(" ").length} Words ans {text.length} characters
+          {wordCount(text)} Words ans {text.length} characters
         </p>
         <p>{0.08 * text.split(" ").length} minutes to read</p>
         <h2>Preview</h2>
